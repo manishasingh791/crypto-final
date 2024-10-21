@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Raleway:ital,wght@0,200;0,300;1,200&family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+ 
+body {
+  
+  font-family: "Roboto", sans-serif;
+  
+  background-color: #1e1d1e;
+  height: 100vh;
+}
+* {
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+.top {
+
+  height: 36vh;
+  background-color: rgb(226, 188, 37,0.9);
+
+}
+.bottom {
+  height: 64vh;
+  background-color: #1e1d1e;
+  padding: 1rem;
+  display: grid;
+  justify-items: center;
+}
+.cards {
+  border-radius: 10px;
+  width: 86%;
+  height: 60vh;
+  background-color: #2417174f;
+  padding: 10px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+.__card {
+
+  height: 95%;
+  width: 98%;
+  background-color: #1e1d1e;
+  border: 1px solid #413d3d;
+
+}
+.__card:hover {
+  filter: brightness(150%);
+}
+
+#viewmore{
+
+  height: 20px;
+  width: 80px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 1161px;
+  margin-top: -21px;
+
+}
+#viewmore a{
+  outline: none;
+  text-decoration: none;
+  color: rgb(5, 195, 129);
+  font-size: larger;
+  cursor: pointer;
+  
+}
+#heading{
+  margin-top: 20px;
+
+  font-family: 'Lora', serif;
+  font-size: 100px;
+}
+#part{
+  /* margin-top: 20px; */
+  font-family: 'Lora', serif;
+
+}

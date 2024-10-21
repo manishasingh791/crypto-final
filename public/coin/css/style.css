@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+font-family: "Roboto", sans-serif;
+
+}
+
+.main {
+  height: 100%;
+  display: grid;
+  width: 100%;
+  background-color: #222222 ;
+}
+
+.top {
+  height: 5vh;
+}
+
+.bottom {
+  margin-top: 10vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  width: 98%;
+  margin-bottom: 1vw;
+  height: 83vh;
+  display: flex !important; 
+  background-color: #17161653;
+  padding: 30px; 
+  display: grid;
+  border-radius: 50px;
+}
+
+.buy_sell_chart {
+  background-color: #e3e454;
+  width: 25% ;
+  height: fit-content;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78%;
+  height: 95%;
+  background-color:rgb(32, 34, 39);
+  margin-right: 20px;
+  border-radius: 30px;
+  user-select: none;
+  /* pointer-events: none; */
+}
+
+.btn {
+  height: 65px;
+  width: 300px;
+  margin-top: 6px;
+  margin-right: auto;
+}
+.buy_sell{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#cost {
+  margin: 20px;
+  font-size: 10px;
+  font-weight: 400;
+  margin-right: 180px;
+}
+.buy_sell_chart p {
+  width: 250px;
+  font-size: 25px;
+ font-style: initial;
+}
+.buy_sell_chart h6{
+  margin: 5px;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 17px;
+  margin-right: 200px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+color: #3f3c3c;
+
+  
+}
+.buy_sell_chart input{
+  font-size: larger;
+} 
+
+.buy_and_sell{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.buy_sell_chart{
+  margin-top: -25px;
+  height: 50%;
+  width: 100%;
+  background-color: #e2bc25;
+  margin-bottom: 10px;
+}
+.chart{
+  height: 50%;
+  width: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+   margin-right: 10px;
+ 
+}
+.qtyavailable{
+  height: 10px;
+  width: 100%;
+  font-size: 10px;
+  opacity: 0.7;
+  padding-left: 60px;
+  margin-top: 4px;
+  /* background-color: #fff; */
+}
+/* --------------------------------------RESPONSIVE------------------------------------------------------------- */

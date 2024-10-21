@@ -1,0 +1,70 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+    <!-- <link rel="stylesheet" href="/login page/css/login.css" /> -->
+    <link rel="stylesheet" href="/details/css/style.css" />
+    <link rel="shortcut icon" href="/image/OIP.jpeg" type="image/jpeg" />
+  </head>
+  <style>
+    .box { height: 550px !important;
+    } #submit_btn { margin-top: 30px !important; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none;
+    margin: 0; }
+  </style>
+
+  <script>
+   
+    const numberInput =document.getElementById("myNumberInput"); 
+    numberInput.addEventListener("focus", function () {
+    this.addEventListener("keydown", function (event) { if (event.which === 38
+    || event.which === 40) { event.preventDefault(); } }); });
+  </script>
+
+  <body>
+    <div class="box">
+      <span class="borderline"></span>
+      <form>
+        <h2 id="login">Details</h2>
+        <div class="inputbox">
+          <input
+            type="text"
+            required="required"
+            autocomplete="new-password"
+            id="name"
+          />
+          <span> Full Name</span>
+          <i></i>
+        </div>
+        <div class="inputbox">
+          <input type="number" required="required" id="age"  autocomplete="new-password" />
+          <span>Age</span>
+          <i></i>
+        </div>
+         <div class="inputbox">
+          <input type="number" required="required" id="pno"  autocomplete="new-password" />
+          <span>Contact Number</span>
+          <i></i>
+        </div>
+        <div class="inputbox">
+          <input type="number" required="required" id="amount" autocomplete="new-password"  />
+          <span>Starting Amount In USD</span>
+          <i></i>
+        </div>
+        <input type="submit" id="submit_button" />
+      </form>
+    </div>
+  </body>
+  <script
+    src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"
+  ></script>
+  <script
+    src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"
+  ></script>
+  <script type="module" src="/details/js/script.js"></script>
+  {{!-- <script type="module" src="/details/js/script1.js"></script> --}}
+
+</html>

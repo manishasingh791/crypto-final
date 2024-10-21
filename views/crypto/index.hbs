@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/navbar/css/style.css">
+    <link rel="stylesheet" href="/home/css/style.css">
+    {{>script}}
+  </head>
+
+  <body>
+  
+    <div class="top" >
+      {{>navbar}}
+      <h1>
+        <center id="heading">Crypto is a future where</center>
+        <center id="part"> innovation and financial empowerment converge</center>
+      </h1>
+    </div>
+    <div class="bottom">
+      <div class="cards">
+     {{>card src="BTCUSDT"}}
+     {{>card src="BNBUSDT"}}
+     {{>card src="COMPUSDT"}}
+     {{>card src="ETHUSDT"}}
+     {{>card src="BCHUSDT"}}
+     {{>card src="LTCUSDT"}}
+      </div>
+  <span id="viewmore"><a href="/viewmore">View More</a></span>
+
+    </div>
+  <script src="/home/js/script.js"></script>
+  </body>
+</html>

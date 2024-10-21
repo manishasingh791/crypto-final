@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+     
+    <link rel="stylesheet" href="/navbar/css/style.css">
+    <link rel="stylesheet" href="/stock_home/css/style.css">
+    {{>script}}
+  </head> 
+   <style>
+  <body>
+    
+    <span class="main">
+       <div class="top" >
+      {{>stock_navbar }}
+    </div>
+   <div class="bottom_main">
+      <div class="bottom_container">
+        <p id="top_gainers">Top Gainers</p>
+        <div class="bottom" id="gainersContainer">
+          <!-- Cards for top gainers will be dynamically inserted here -->
+        </div>
+        <p id="top_Losers">Top Losers</p>
+        <div class="bottom" id="losersContainer">
+          <!-- Cards for top losers will be dynamically inserted here -->
+        </div>
+        <p id="top_active">Top Active</p>
+        <div class="bottom" id="activesContainer">
+          <!-- Cards for top actives will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </span>
+ <script src="/stock_home/js/script2.js" type="module"></script>
+
+</body>
+</html>

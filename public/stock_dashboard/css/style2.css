@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: antiquewhite;
+}
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-color: #222222;
+}
+
+.head {
+  width: 100%;
+  /* height: fit-content; */
+  color: whitesmoke;
+  margin-top: 2%;
+}
+.head p {
+  font-size: 30px;
+  margin-left: 10%;
+}
+.head i {
+  margin-left: 10px;
+  font-size: 19px;
+}
+.separator {
+  opacity: 0.3;
+
+  border-top: 1px solid white;
+  margin: -13px 0;
+}
+
+.separator:before {
+  content: "";
+  /* position: absolute; */
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+
+  border-top: 1px solid white;
+}
+
+.user_wallet {
+  height: 74vh;
+  width: 94%;
+
+  margin-left: 80px;
+  margin-top: 50px;
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #212020;
+}
+.info {
+  width: 38%;
+  height: 60vh;
+  border: 1px solid rgba(70, 70, 70, 0.61);
+  margin-right: 50px;
+  background-color: #222222;
+  box-shadow: 15px 21px 24px -23px #484848;
+  border-radius: 30px;
+}
+
+.deposit_money {
+  width: 55%;
+  height: 70%;
+  border: 1px solid rgba(70, 70, 70, 0.61);
+  border-radius: 30px;
+  background-color: #222222;
+  box-shadow: 15px 21px 24px -23px #484848;
+}
+
+.currbalance {
+  background-color: rgb(47, 46, 46, 0.5);
+  border-radius: 30px 30px 0px 0px;
+  height: 30%;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(70, 70, 70, 0.61);
+}
+.currbalance span {
+  margin-top: 20px;
+  font-size: 30px;
+  margin-left: 30px;
+}
+.bal {
+  margin-top: -24px;
+  margin-left: 23px;
+}
+#dollar {
+  font-size: 40px;
+}
+#balance {
+  font-size: 17px;
+  margin-top: 40px;
+}
+.accounts {
+  height: 200px;
+  width: 100%;
+  padding: 20px;
+
+  padding-right: 37px;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.61);
+}
+.invested,
+.starting_balance,
+.user_age {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 30px;
+}
+.invested {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.user_age {
+  margin-top: 30px;
+}
+#dollar2 {
+  font-size: 25px;
+}
+#dollar3 {
+  font-size: 25px;
+}
+#dollar4 {
+  font-size: 25px;
+}
+.profit_loss {
+  padding: 20px;
+
+  padding-right: 37px;
+}
+#profit_loss_{
+  font-size:25px;
+}
+.deposit {
+  height: 10%;
+  width: 100%;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.61);
+  border-radius: 30px 30px 0px 0px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.deposit_amount {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 10px 2px 15px 19px;
+  height: 40%;
+  vertical-align: middle;
+  
+  /* border-bottom:1px solid rgba(70 , 70, 70, 0.61);  */
+}
+/* .money_input {
+  border-bottom: 1px solid rgba(70, 70, 70, 0.61);
+} */
+.money {
+  text-align: center;
+  background-color: rgb(26, 31, 29, 1);
+  height: fit-content;
+  width: 35%;
+  margin-right: 20px;
+}
+.deposit_amount input {
+  width: 63%;
+  height: 32px;
+  background-color: rgb(26, 31, 29, 1);
+  user-select: none;
+  outline: none;
+  border: none;
+  font-size: 12px;
+  /* border-radius: 30px */
+}
+
+.deposit_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+}
+.deposit_btn button {
+  height: 50px;
+  width: 70%;
+  margin-top: 30px;
+  background-color: rgb(26, 31, 29, 1);
+
+  border-radius: 50px;
+  font-size: 20px;
+}
+.addbtn {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+.one{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 42px;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.61);
+
+}
+.portfolio{
+  display: flex;
+  align-items: center;
+  height: 80px;
+border-bottom: 1px solid rgba(70, 70, 70, 0.61);
+
+}
+
+.icon{
+ margin-top: 28px;
+ margin-left: -8px;
+ transform: scale(0.85);
+
+}
+
+.quantity{
+margin-left: 67px;
+width: 50px;
+
+   
+}
+.buying_price{
+
+margin-left: 263px;
+width: 50px;
+
+}
+#portfolioContainer {
+  height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #222;
+}
+
+#portfolioContainer::-webkit-scrollbar-track {
+  background-color: #222;
+}
+
+#portfolioContainer::-webkit-scrollbar-thumb {
+  background-color: #555;
+}
+
+#portfolioContainer::-webkit-scrollbar-corner {
+  background-color: #222;
+}

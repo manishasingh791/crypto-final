@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+ <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="/navbar/css/style.css">
+    <link rel="stylesheet" href="/coin/css/style.css">
+    {{>script}}
+  </head> 
+   <style>
+    /* Optional: Hide the text input styling */ .box { height: 450px !important;
+    } #submit_btn { margin-top: 30px !important; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none;
+    margin: 0; }
+  </style>
+
+  {{!-- <script>
+ 
+     const numberInput = document.getElementById("myNumberInput"); // Disable the increment and
+    numberInput.addEventListener("focus", function () {
+    this.addEventListener("keydown", function (event) { if (event.which === 38
+    || event.which === 40) { event.preventDefault(); } }); });
+  </script> --}}
+  <body>
+    
+    <span class="main">
+       <div class="top" >
+      {{>stock_navbar }}
+    </div>
+     
+  <span class="bottom">
+     <span class="graph">
+    {{>graph symbol=src}}
+    </span> 
+    
+    <div class="buy_and_sell">
+
+<div class="buy_sell_chart">
+
+  <div class="buy_sell">
+  <div class="details">
+    <h6 id="cost" style="font-size: 17px;">Current price</h6>
+<p class="button-17" style="width:250px height:50px;" id="trade2">Loading...</p>
+<h6>Quantity</h6>
+<input type="number" name="" id="amount" class="button-17" placeholder="Number of stocks" style="width: 250px;">
+<span class="qtyavailable">Quantity Available : <span id="qty_avail">qty</span></span>
+<div class="btn" >
+<span id="buy_btn">{{>buybtn text="Buy" }}</span>
+  <span id="sell_btn">{{>buybtn text="sell"}}</span>
+</div>
+  </div>
+</div> 
+</div>
+<div class="chart" style="overflow: hidden;">
+  {{>widget  symbol=src}}
+</div>
+</div>
+  </span>
+  </span>
+  </body>
+ <script>
+  
+  async function fetchData() {
+    const options = {
+      method: 'GET',
+      url: 'https://twelve-data1.p.rapidapi.com/price',
+      params: {
+        symbol: "{{src}}",
+        format: 'json',
+        outputsize: '30'
+      },
+      headers: {
+        'X-RapidAPI-Key': '280f5ef259mshfb74729579a274cp1a1ab8jsn764d7c84c1c7',
+        'X-RapidAPI-Host': 'twelve-data1.p.rapidapi.com'
+      }
+    };
+
+    try {
+      const response = await axios.request(options);
+       
+   price = parseFloat(response.data.price).toFixed(4).replace(/\.?0+$/, '');
+  trade2.innerHTML = price;
+  console.log( trade2.innerHTML);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  fetchData();
+  setInterval(fetchData, 8000);
+
+</script>
+
+ <script src="/stock/js/script.js" type="module"></script>
+</html>
+
+
+

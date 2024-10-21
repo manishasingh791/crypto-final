@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Market Movers</title>
+    <style>
+      /* CSS styles */
+      body {
+        background-color: #121212; /* Nearly black background */
+        color: #ffffff; /* Text color */
+        font-family: Arial, sans-serif; /* Font family */
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #767676; /* Green border for container */
+        border-radius: 15px; /* Border radius */
+        width: 95%; /* Width of the container */
+        max-width: 1350px; /* Maximum width */
+        overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        width: 88vw;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        border: 2px solid #757575; /* Border color */
+        border-radius: 8px; /* Border radius */
+      }
+      a {
+        color: #ffffff;
+
+        text-decoration: none; /* Remove underline from links */
+        transition: color 0.3s;
+      }
+      a:hover {
+        color: #dfc900; /* Change color on hover */
+      }
+      th,
+      td {
+        /* padding: 12px; */
+        text-align: center;
+        padding: 1.8rem 2rem;
+        font-size: 16px; /* Font size for table cells */
+      }
+      th {
+        background-color: #212121; /* Darker background for table header */
+        border-bottom: 2px solid #757575; /* Border color for table header */
+      }
+      td {
+        border-bottom: 1px solid #757575; /* Border color for table body */
+      }
+      .green {
+        color: #4caf50; /* Green color for positive change */
+      }
+      .red {
+        color: #f44336; /* Red color for negative change */
+      }
+      .search-bar input[type="text"] {
+        padding: 13px;
+        border-radius: 4px;
+        border: 1px solid #757575;
+        background-color: #212121;
+        color: #ffffff;
+        width: 100%;
+        font-size: 16px;
+        margin-top: 52px;
+        width: 1116px;
+        margin-left: 172px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by symbol or name..."
+      />
+    </div>
+
+    <div class="container">
+      <h2 id="Top_Losers">Top Gainers</h2>
+      <table id="gainersTable">
+        <thead>
+          <tr>
+            <!-- <th>Symbol</th>
+            <th>Name</th>
+            <th>Last Price</th>
+            <th>Change</th>
+            <th>Volume</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows for gainers will be dynamically populated here -->
+        </tbody>
+      </table>
+
+      <h2 id="Top_Losers">Top Losers</h2>
+      <table id="losersTable">
+        <thead>
+          <tr>
+            <!-- <th>Symbol</th>
+            <th>Name</th>
+            <th>Last Price</th>
+            <th>Change</th>
+            <th>Volume</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows for losers will be dynamically populated here -->
+        </tbody>
+      </table>
+
+      <h2 id="Top_Losers">Top Actives</h2>
+      <table id="activesTable">
+        <thead>
+          <tr>
+            <!-- <th>Symbol</th>
+            <th>Name</th>
+            <th>Last Price</th>
+            <th>Change</th>
+            <th>Volume</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows for actives will be dynamically populated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const url = "https://ms-finance.p.rapidapi.com/market/v2/get-movers";
+
+      const options = {
+        method: "GET",
+        url: "https://ms-finance.p.rapidapi.com/market/v2/auto-complete",
+        params: { q: "tesla" },
+        headers: {
+          "X-RapidAPI-Key":
+            "aa35bad70amsh0ab1bed3f7ef531p16eff7jsn08a0cffea595",
+          "X-RapidAPI-Host": "ms-finance.p.rapidapi.com",
+        },
+      };
+      async function fetchStockData() {
+        try {
+          const response = await axios.get(url, options);
+          const data = response.data;
+          const topGainers = data.gainers.slice(0, 10);
+          const topLosers = data.losers.slice(0, 10);
+          const topActives = data.actives.slice(0, 10);
+
+          displayCards("gainersTable", topGainers);
+          displayCards("losersTable", topLosers);
+          displayCards("activesTable", topActives);
+        } catch (error) {
+          console.error("Error fetching stock data:", error);
+        }
+      }
+
+      function displayCards(tableId, data) {
+        const tableBody = document.querySelector(`#${tableId} tbody`);
+        tableBody.innerHTML = "";
+
+        data.forEach((stock) => {
+          const row = document.createElement("tr");
+          const cells = [
+            `<td><a href="">${stock.ticker}</a></td>`,
+            `<td>${stock.name}</td>`,
+            `<td>$${parseFloat(stock.lastPrice).toFixed(2)}</td>`,
+            `<td class="${
+              parseFloat(stock.percentNetChange) >= 0 ? "green" : "red"
+            }">${parseFloat(stock.netChange).toFixed(2)}</td>`,
+            `<td>${stock.volume}</td>`,
+          ];
+          row.innerHTML = cells.join("");
+          tableBody.appendChild(row);
+        });
+      }
+
+      function searchAllTables() {
+        const y = document.getElementsByTagName("h2");
+        const searchInput = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toUpperCase();
+        searchTable("gainersTable", searchInput);
+        searchTable("losersTable", searchInput);
+        searchTable("activesTable", searchInput);
+      }
+      
+      function searchTable(tableId, query) {
+        const table = document.getElementById(tableId);
+
+        const rows = table.getElementsByTagName("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+          const cells = rows[i].getElementsByTagName("td");
+          let found = false;
+
+          for (let j = 0; j < cells.length; j++) {
+            const text = cells[j].textContent || cells[j].innerText;
+            if (text.toUpperCase().indexOf(query) > -1) {
+              found = true;
+              break;
+            }
+          }
+
+          if (found) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", searchAllTables);
+      fetchStockData();
+    </script>
+  </body>
+</html>

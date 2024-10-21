@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="/navbar/css/style.css">
+    <link rel="stylesheet" href="/coin/css/style.css">
+    {{>script}}
+  </head>
+   <style>
+    /* Optional: Hide the text input styling */ .box { height: 450px !important;
+    } #submit_btn { margin-top: 30px !important; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none;
+    margin: 0; }
+  </style>
+
+  {{!-- <script>
+ 
+     const numberInput = document.getElementById("myNumberInput"); // Disable the increment and
+    numberInput.addEventListener("focus", function () {
+    this.addEventListener("keydown", function (event) { if (event.which === 38
+    || event.which === 40) { event.preventDefault(); } }); });
+  </script> --}}
+  <body>
+    
+    <span class="main">
+       <div class="top" >
+      {{>navbar }}
+    </div>
+     
+  <span class="bottom">
+     <span class="graph">
+    {{>graph symbol=src}}
+    </span> 
+    
+    <div class="buy_and_sell">
+
+<div class="buy_sell_chart">
+
+  <div class="buy_sell">
+  <div class="details">
+    <h6 id="cost" style="font-size: 17px;">Current price</h6>
+<p class="button-17" style="width:250px height:50px;" id="trade2">Loading...</p>
+<h6>Quantity</h6>
+<input type="number" name="" id="amount" class="button-17" placeholder="Amount In USD" style="width: 250px;">
+<span class="qtyavailable">Quantity Available : <span id="qty_avail">qty</span></span>
+<div class="btn" >
+<span id="buy_btn">{{>buybtn text="Buy" }}</span>
+  <span id="sell_btn">{{>buybtn text="sell"}}</span>
+</div>
+  </div>
+</div> 
+</div>
+<div class="chart" style="overflow: hidden;">
+  {{>widget  symbol=src}}
+</div>
+</div>
+  </span>
+  </span>
+  </body>
+<script>
+   const x = "{{src}}";
+  const lower_src = x.toLowerCase();
+ let ws = new WebSocket(`wss://stream.binance.com:9443/ws/${lower_src}@trade`);
+ let price = 0;
+ let old_price = 0;
+ws.onmessage = (event) => {
+  data = JSON.parse(event.data);
+   price = parseFloat(data.p).toFixed(4).replace(/\.?0+$/, '');
+  trade2.innerHTML = price;
+};
+</script>
+ <script src="/coin/js/script.js" type="module"></script>
+</html>
+
+
+

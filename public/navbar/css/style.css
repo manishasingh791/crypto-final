@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Raleway:ital,wght@0,200;0,300;1,200&family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 0px ;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+i {
+  margin-right: 10px;
+}
+.navbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+#logoicon {
+  width: 40px;
+  height: 44px;
+  margin-left: 10px;
+}
+#sitename img{
+  margin-top: 7px;
+  width: 111px;
+  height: 27px;
+  margin-left: 10px;
+}
+/*----------bootstrap-navbar-css------------*/
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+.navbar-logo {
+  padding: 15px;
+  color: #fff;
+}
+
+.navbar-mainbg {
+  background-color: #222222 ;
+  padding: 0px;
+}
+
+#navbarSupportedContent {
+  overflow: hidden;
+  position: relative;
+}
+
+#navbarSupportedContent ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+#navbarSupportedContent ul li a i {
+  margin-right: 10px;
+}
+
+#navbarSupportedContent li {
+  list-style-type: none;
+  float: left;
+}
+
+#navbarSupportedContent ul li a {
+  color: rgba(255, 255, 255, 0.443);
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 20px 20px;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+#navbarSupportedContent > ul > li.active > a {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  /* transform: scale(1.2); */
+  transition: all 0.4s;
+  opacity: 1.5;
+}
+
+#navbarSupportedContent a:not(:only-child):after {
+  content: "\f105";
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 14px;
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
+  transition: 0.5s;
+}
+#navbarSupportedContent > ul > li > a::after {
+  content: '';
+  display: block;
+  width: 0; /* Set initial width to 0 to hide the line */
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 20%;
+  /* bottom: 50%; Position the line vertically at the center */
+  left: 50%; 
+  transform: translateX(-50%); /* Move the line to start from the center */
+  transition: width 0.4s ease; /* Transition effect for width change */
+}
+
+#navbarSupportedContent > ul > li > a:hover::after {
+  width: 50%; /* Expand the line to full width on hover */
+}
+
+
+#navbarSupportedContent .active > a:not(:only-child):after {
+  transform: rotate(90deg);
+}
+
+ .hori-selector {
+  display: inline-block;
+  position: absolute;
+  height: 50%;
+  top: 0px;
+  left: 0px;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background-color: #dedac8;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-top: 10px;
+  border-radius: 40%;
+  transform: scale(0.8);
+  margin-bottom: 50px;
+}
+
+.hori-selector .right,
+.hori-selector .left {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #d9d6c8;
+  bottom: 10px;
+  
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-custom {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .navbar-expand-custom .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .navbar-expand-custom .navbar-toggler {
+    display: none;
+  }
+  .navbar-expand-custom .navbar-collapse {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  #navbarSupportedContent ul li a {
+    padding: 12px 30px;
+  }
+  .hori-selector {
+    margin-top: 0px;
+    margin-left: 10px;
+    border-radius: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+  .hori-selector .left,
+  .hori-selector .right {
+    right: 10px;
+  }
+  .hori-selector .left {
+    top: -25px;
+    left: auto;
+  }
+  .hori-selector .right {
+    bottom: -25px;
+  }
+  .hori-selector .left:before {
+    left: -25px;
+    top: -25px;
+  }
+  .hori-selector .right:before {
+    bottom: -25px;
+    left: -25px;
+  }
+}
+
+.tv-mini-symbol-overview__link js-link{
+  background-color: #fff;
+}
+

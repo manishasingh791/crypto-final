@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/navbar/css/style.css" >     
+     {{>script}}
+    <title>Document</title>
+</head>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+     .navbar-mainbg {
+       background: linear-gradient(to right, #0e0e12, #071b36);
+
+}
+.main{
+  height: 100vh;
+  width: 100vw;
+    background-color: rgb(9 0 31 / 96%);
+
+
+}
+    #hero {
+      width: 100%;
+    height: 91vh;
+  background: url(../assets/img/004.jpg) top center;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+#hero:before {
+  content: "";
+  background: rgba(6, 12, 34, 0.8);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#hero h1 {
+  color: #fff;
+  font-family: "Raleway", sans-serif;
+  font-size: 56px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#hero h1 span {
+  color: #f82249;
+}
+
+#hero .hero-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 90px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#hero h1 {
+  color: #fff;
+  font-family: "Raleway", sans-serif;
+  font-size: 56px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#hero h1 span {
+  color: #f82249;
+}
+
+@media (max-width: 991px) {
+  #hero h1 {
+    font-size: 34px;
+  }
+}
+
+#hero p {
+  color: #ebebeb;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+@media (max-width: 991px) {
+  #hero p {
+    font-size: 16px;
+  }
+}
+
+
+
+#hero .about-btn {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  transition: 0.5s;
+  line-height: 1;
+  margin: 10px;
+  text-decoration: none;
+  color: #fff;
+  animation-delay: 0.8s;
+  border: 2px solid #f82249;
+}
+
+#hero .about-btn:hover {
+  background: #f82249;
+  color: #fff;
+}
+
+@keyframes pulsate-btn {
+  0% {
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1, 1);
+    opacity: 0;
+  }
+}
+
+  </style>
+
+<body>
+<div class="main">
+    <div class="top">
+        {{>navbar}}
+    </div>
+    
+    
+ <section id="hero">
+   <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="mb-4 pb-0">Welcome To <br><span>The World </span> of Crypto</h1>
+      <a href="/cryptolist" class="about-btn scrollto">View Coins</a>
+    </div>
+  </section> 
+
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+</div>
+</body>
+</html>

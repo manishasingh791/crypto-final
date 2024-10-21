@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222222;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, #313131, #292929); /* Gradient background */
+            padding: 20px;
+            backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+        }
+
+        .btn-group button {
+            background: linear-gradient(to top, #1e1e1e, #222); /* Gradient background */
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease; /* Transition for the upward effect */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative; /* For the hover effect */
+            z-index: 1; /* Ensures the hover effect works properly */
+        }
+
+        .btn-group button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%; /* Increased height for the upward effect */
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            transform-origin: bottom; /* Sets the origin to the bottom for upward effect */
+            transform: scaleY(0); /* Initially hidden */
+            z-index: -1; /* Behind the button */
+        }
+
+        .btn-group button:hover::before {
+            transform: scaleY(1); /* Reveals on hover */
+        }
+
+        .btn-group button:hover {
+            transform: translateY(-5px); 
+        }
+
+        .btn-group button:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn-group button:focus {
+            outline: none;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Dark & Beautiful Buttons</h1> -->
+    <!-- <p>Enhance your user interface with stunning buttons.</p> -->
+    <div class="btn-group">
+        <button type="button" id="stbButton" onclick="redirect1()">Stocks</button>
+        <button type="button" id="cdbButton" onclick="redirect2()">Crypto</button>
+    </div>
+</body>
+<script>
+    function redirect1(){
+      window.location.href = "/stock_home";
+   }
+    function redirect2(){
+      window.location.href = "/crypto_home";
+   }
+</script>
+</html>

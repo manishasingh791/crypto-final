@@ -1,0 +1,130 @@
+<link rel="shortcut icon" href="/image/logo.png" type="image/x-icon">
+<style>
+  
+    .nav-item{
+        cursor: pointer;
+    }
+    .logo{
+      margin-left: 50px;
+      
+    }
+    .navbar-brand{
+
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    font-size: 28px;
+    vertical-align: middle;
+    margin-left: -7px;
+    color: rgb(221, 217, 209);
+ 
+    }
+    .navbar-item:hover{
+    color: rgb(255, 255, 255);
+    }
+    .navbar-brand:hover{
+    color: rgb(255, 255, 255);
+    }
+    #navbarSupportedContent ul li a :hover {
+    color: white;
+    }
+</style>
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+    <div class="logo" >
+        <img src="/image/white logo 2.png" alt="Logo" srcset="" id="logoicon">
+          {{!-- <a class="navbar-brand navbar-logo" href="./../">Cryptic</a> --}}
+          <a class="navbar-brand navbar-logo" href="./../" id="sitename"><img src="/image/white logo 20.png" alt="" srcset=""></a>
+    </div>
+      
+        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item active" id="home">
+                    <a class="nav-link" href="./../crypto_home"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                </li>
+                <li class="nav-item" id="dashboard">
+                    <a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt" ></i>Dashboard</a>
+                </li>
+                <li class="nav-item" id="wallet_btn">
+                    <a class="nav-link" href="/wallet"><i class="fa fa-credit-card" aria-hidden="true"></i>Wallet</a>
+                </li>
+                <li class="nav-item" onclick="future()" id="learn"> 
+                    <a class="nav-link" href="javascript:void(0);"><i class="fa fa-graduation-cap" aria-hidden="true" ></i>Learn</a>
+                </li>
+                <li class="nav-item" id="btn_login" style="display: none;">
+                    <a class="nav-link" href="/login" ><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a>
+                </li>
+                <li class="nav-item" id="btn_signup" style="display: none;">
+                    <a class="nav-link" href="/signup"><i class="fa fa-user" aria-hidden="true"></i>Signup</a>
+                </li>
+                <li class="nav-item" style="display: none;" id="logout_btn">
+                    <a class="nav-link" href="javascript:void(0);" onclick="log_out()" > <i class="fa fa-sign-out" aria-hidden="true" ></i>Log OUT</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        const btn_login = document.getElementById("btn_signup");
+        const btn_signup = document.getElementById("btn_login");
+
+
+var user = localStorage.getItem("login_info");
+
+const btn_logout = document.getElementById("logout_btn");
+
+
+function login() {
+  user = JSON.parse(user);
+  if (user == null) {
+    btn_login.style.display = "block";
+    btn_signup.style.display = "block";
+    redirectToLogin();
+  } else {
+    btn_logout.style.display = "block";
+  }
+  function redirectToLogin() {
+    console.log("Redirecting to login");
+    setTimeout(function () {
+      window.location.href = "/login";
+    }, 600000);
+  }
+}
+
+login();
+
+window.addEventListener("popstate", function (event) {
+  location.reload();
+});
+
+//logout------------------------------------------>
+btn_logout.addEventListener("click", () => {
+  localStorage.removeItem("login_info");
+
+  btn_signup.style.display = "block";
+  btn_login.style.display = "block";
+  btn_logout.style.display = "none";
+  location.reload();
+});
+btn_signup.addEventListener("click", () => {
+  window.location = "/signup";
+});
+
+btn_login.addEventListener("click", () => {
+  if (btn_login.innerHTML == "Log Out") {
+    localStorage.removeItem("login_info");
+    // location.reload();
+    btn_login.innerHTML = "Log In";
+    btn_signup.style.display = "block";
+  } else window.location = "/login";
+});
+
+
+function return_home() {
+  window.location.href = "/";
+}
+function future(){
+alert("THIS SECTION IS UNDER DEVELOPMENT WILL BE AVAILABLE FOR FUTURE USE")
+}
+    </script>

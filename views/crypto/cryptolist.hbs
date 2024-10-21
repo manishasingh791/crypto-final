@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/navbar/css/style.css" >
+   
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+     {{>script}}
+    <title>Document</title>
+</head>
+<style>
+    .main{
+        background-color: #222222;
+        padding-bottom: 30px;
+    }
+        /* Add your CSS styles here */
+        .search-bar{
+            width: 90%;
+            margin: 30px;
+        }
+        body {
+            background-color: #121212; /* Nearly black background */
+            color: #ffffff; /* Text color */
+             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font family */
+            padding: 0;
+        }
+        table {
+              width: 90%;
+              margin-left: 64px;
+              border-collapse: collapse;
+              border: 2px solid #757575;
+              border-radius: 8px;
+              border-bottom: 20px;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: center;
+        }
+        th {
+            background-color: #212121; /* Darker background for table header */
+            border-bottom: 2px solid #757575; /* Border color for table header */
+        }
+        td {
+            border-bottom: 1px solid #757575; /* Border color for table body */
+        }
+         tr:hover {
+        background-color: #333; /* Row hover effect */
+        transition: background-color 0.3s ease;
+        }
+        .green {
+            color: #4caf50; /* Green color for positive change */
+        }
+        .red {
+            color: #f44336; /* Red color for negative change */
+        }
+    .search-bar {
+        width: 90%;
+        margin: 30px auto;
+        text-align: center;
+    }
+
+    .search-bar input[type="text"] {
+        padding: 12px 20px;
+        border-radius: 20px;
+        border: 1px solid #555;
+        background-color: #1e1e1e;
+        color: #fff;
+        width: 100%;
+        max-width: 800px;
+        height: 48px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-bar input[type="text"]:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        outline: none;
+        font-size: 15px;
+    }
+        #coinlink{
+            text-decoration: none;
+            color: whitesmoke;
+        }
+  </style>
+<body>
+<div class="main">
+    <div class="top">
+        {{>navbar}}
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by symbol...">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Last Price</th>
+                <th>Price Change (%)</th>
+                <th>Market Cap</th>
+            </tr>
+        </thead>
+        <tbody id="asset-table-body">
+            <!-- Table rows will be dynamically populated here -->
+        </tbody>
+    </table>
+
+</div>
+</body>
+ {{!-- <script>
+        let page = 1; // Initial page
+        let loading = false; // Flag to prevent multiple requests at once
+        const binanceApiUrl = 'https://api.binance.com/api/v3/ticker/24hr';
+        let tickerArray = []; // Array to store ticker data
+
+        const symbols = [
+            "BTCUSDT","ETHUxSDT","BNBUSDT","ADAUSDT","XRPUSDT","DOGEUSDT","DOTUSDT","BCHUSDT","LTCUSDT","LINKUSDT","XLMUSDT","VETUSDT","THETAUSDT","FILUSDT","TRXUSDT","EOSUSDT","AAVEUSDT", "ATOMUSDT","XTZUSDT","NEOUSDT","CROUSDT","UMAUSDT","XEMUSDT","MKRUSDT","SUSHIUSDT","FTTUSDT","COMPUSDT","ALGOUSDT","DASHUSDT","ENJUSDT","SNXUSDT","HBARUSDT","ZECUSDT","ONTUSDT","DCRUSDT"
+        ];
+
+        // Function to fetch data from Binance API and populate the array
+        async function fetchTickerData() {
+            if (loading) return; // If already loading, exit
+            loading = true; // Set loading flag to true
+            try {
+                const response = await axios.get(`${binanceApiUrl}`);
+                const tickerData = response.data;
+                console.log('Fetched Data:', tickerData);
+
+                if (tickerData.length === 0) {
+                    // No more data available
+                    window.removeEventListener('scroll', handleScroll);
+                    return;
+                }
+
+                // Filter the fetched data to only include symbols in the `symbols` array
+                const filteredData = tickerData.filter(ticker => symbols.includes(ticker.symbol));
+                console.log('Filtered Data:', filteredData);
+
+                // Add filtered data to the array
+                tickerArray = [...filteredData.map(ticker => ({
+                    symbol: ticker.symbol,
+                    lastPrice: parseFloat(ticker.lastPrice).toFixed(2),
+                    priceChangePercent: parseFloat(ticker.priceChangePercent).toFixed(2),
+                    marketCap: parseFloat(ticker.quoteVolume).toFixed(0) // Replace with quoteVolume as marketCap is not available
+                    // Add more properties as needed
+                }))];
+
+                console.log('Ticker Array:', tickerArray);
+
+                // Sort the ticker array by last price
+                tickerArray.sort((a, b) => parseFloat(b.lastPrice) - parseFloat(a.lastPrice));
+
+                page++; // Increment page for next request
+
+            } catch (error) {
+                console.error('Error fetching data from Binance API:', error);
+            } finally {
+                loading = false; // Reset loading flag
+                populateTable(); // Populate table after sorting
+            }
+        }
+
+        // Function to populate the table with data from the array
+        function populateTable() {
+            const tableBody = document.getElementById('asset-table-body');
+            tableBody.innerHTML = ''; // Clear existing table data
+            const searchInput = document.getElementById('searchInput').value.trim().toUpperCase();
+
+            for (let i = 0; i < tickerArray.length; i++) {
+                const ticker = tickerArray[i];
+                if (ticker.symbol.toUpperCase().includes(searchInput)) {
+                    const row = document.createElement('tr');
+                    row.classList.add('border-b', 'border-zinc-700');
+                    const cells = [
+                        // `<td class="py-4 px-6">${ticker.symbol}</td>`,
+                        `<td class="py-4 px-6"><a id = "coinlink" href="/coin/?tvwidgetsymbol=${ticker.symbol}">${ticker.symbol}</a></td>`,
+                        `<td class="py-4 px-6">$${ticker.lastPrice}</td>`,
+                        `<td class="py-4 px-6 ${parseFloat(ticker.priceChangePercent) >= 0 ? 'green' : 'red'}">${ticker.priceChangePercent}%</td>`,
+                        `<td class="py-4 px-6">$${ticker.marketCap}</td>`
+                    ];
+                    row.innerHTML = cells.join('');
+                    tableBody.appendChild(row);
+                }
+            }
+        }
+
+        // Event listener for search input
+        document.getElementById('searchInput').addEventListener('input', populateTable);
+
+        // Initial load
+        fetchTickerData();
+    </script> --}}
+
+    <script>
+    let page = 1; // Initial page
+    let loading = false; // Flag to prevent multiple requests at once
+    const binanceApiUrl = 'https://api.binance.com/api/v3/ticker/24hr';
+    let tickerArray = []; // Array to store ticker data
+
+    const symbols = [
+        "BTCUSDT", "ETHUSDT", "BNBUSDT", "ADAUSDT", "XRPUSDT", "DOGEUSDT", "DOTUSDT", "BCHUSDT", "LTCUSDT", "LINKUSDT", "XLMUSDT", "VETUSDT", "THETAUSDT", "FILUSDT", "TRXUSDT", "EOSUSDT", "AAVEUSDT", "ATOMUSDT", "XTZUSDT", "NEOUSDT", "CROUSDT", "UMAUSDT", "XEMUSDT", "MKRUSDT", "SUSHIUSDT", "FTTUSDT", "COMPUSDT", "ALGOUSDT", "DASHUSDT", "ENJUSDT", "SNXUSDT", "HBARUSDT", "ZECUSDT", "ONTUSDT", "DCRUSDT"
+    ];
+
+    // Function to fetch data from Binance API and populate the array
+    async function fetchTickerData() {
+        if (loading) return; // If already loading, exit
+        loading = true; // Set loading flag to true
+        try {
+            const response = await axios.get(`${binanceApiUrl}`);
+            const tickerData = response.data;
+            console.log('Fetched Data:', tickerData);
+
+            if (tickerData.length === 0) {
+                // No more data available
+                window.removeEventListener('scroll', handleScroll);
+                return;
+            }
+
+            // Filter the fetched data to only include symbols in the `symbols` array
+            const filteredData = tickerData.filter(ticker => symbols.includes(ticker.symbol));
+            console.log('Filtered Data:', filteredData);
+
+            // Add filtered data to the array
+            tickerArray = [...filteredData.map(ticker => ({
+                symbol: ticker.symbol,
+                lastPrice: parseFloat(ticker.lastPrice).toFixed(2),
+                priceChangePercent: parseFloat(ticker.priceChangePercent).toFixed(2),
+                marketCap: parseFloat(ticker.quoteVolume).toFixed(0) // Replace with quoteVolume as marketCap is not available
+                // Add more properties as needed
+            }))];
+
+            console.log('Ticker Array:', tickerArray);
+
+            // Sort the ticker array by last price
+            tickerArray.sort((a, b) => parseFloat(b.lastPrice) - parseFloat(a.lastPrice));
+
+            page++; // Increment page for next request
+
+        } catch (error) {
+            console.error('Error fetching data from Binance API:', error);
+        } finally {
+            loading = false; // Reset loading flag
+            populateTable(); // Populate table after sorting
+        }
+    }
+
+    // Function to populate the table with data from the array
+    function populateTable() {
+        const tableBody = document.getElementById('asset-table-body');
+        tableBody.innerHTML = ''; // Clear existing table data
+        const searchInput = document.getElementById('searchInput').value.trim().toUpperCase();
+
+        for (let i = 0; i < tickerArray.length; i++) {
+            const ticker = tickerArray[i];
+            if (ticker.symbol.toUpperCase().includes(searchInput)) {
+                const row = document.createElement('tr');
+                row.classList.add('border-b', 'border-zinc-700');
+                row.setAttribute('data-link', `/coin/?tvwidgetsymbol=${ticker.symbol}`); // Set data attribute with link
+                const cells = [
+                    `<td class="py-4 px-6"><a id="coinlink" href="/coin/?tvwidgetsymbol=${ticker.symbol}">${ticker.symbol}</a></td>`,
+                    `<td class="py-4 px-6">$${ticker.lastPrice}</td>`,
+                    `<td class="py-4 px-6 ${parseFloat(ticker.priceChangePercent) >= 0 ? 'green' : 'red'}">${ticker.priceChangePercent}%</td>`,
+                    `<td class="py-4 px-6">$${ticker.marketCap}</td>`
+                ];
+                row.innerHTML = cells.join('');
+                tableBody.appendChild(row);
+
+                // Add click event listener to the row
+                row.addEventListener('click', () => {
+                    const link = row.getAttribute('data-link');
+                    if (link) {
+                        window.location.href = link; // Redirect to the link associated with the row
+                    }
+                });
+            }
+        }
+    }
+
+    // Event listener for search input
+    document.getElementById('searchInput').addEventListener('input', populateTable);
+
+    // Initial load
+    fetchTickerData();
+</script>
+
+</html>

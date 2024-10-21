@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/navbar/css/style.css">
+     <link rel="stylesheet" href="/dashboard/css/style.css" type="text/css">
+     {{!-- <link rel="stylesheet" href="/dashboard/css/style2.css" type="text/css"> --}}
+     <link rel="stylesheet" href="/addbtn/css/style.css">
+     {{>script}}
+    <title>Document</title>
+</head>
+  <style>
+   <style>
+        .box { height: 450px !important; }
+        #submit_btn { margin-top: 30px !important; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+#portfolioContainer {
+  height: 300px;
+  overflow-y: auto;
+}
+
+#portfolioContainer::-webkit-scrollbar {
+  width: 6px;
+
+}
+
+#portfolioContainer::-webkit-scrollbar-track {
+  background-color: #222;
+}
+
+#portfolioContainer::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 20px;
+}
+
+#portfolioContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #777;
+}
+
+#portfolioContainer::-webkit-scrollbar-thumb:active {
+  background-color: #999;
+}
+
+    </style>
+<body>
+<div class="main">
+    <div class="top">
+        {{>stock_navbar}}
+    </div>
+    <div class="bottom">
+       <div class="head">
+        <p class="selected">Dashboard<i class="fa fa-credit-card" aria-hidden="true"></i></p>
+        <div class="separator"></div>
+       </div>
+       <div class="user_wallet">
+        <div class="info">
+        <div class="currbalance">
+            <span id="nametag">Name</span>
+       <span id="name">-</span></div>
+        <div class="accounts">   
+            <div class="invested">
+              <span>E-mail</span> 
+             <span><span id="E_mail">-</span></span>
+              </div>
+
+         <div class="starting_balance">
+          <span>Contact Number</span>
+             <span><span id="P_no">-</span></span>
+          </div>
+        <div class="user_age">
+            <span>Age</span>
+             <span><span id="age">-</span></span>
+          </div>
+
+        </div>
+        <div class="profit_loss">
+            <div class="starting_balance">
+              <span>Available Balance</span> 
+              <span><span id="profit_loss_">$</span><span id="balance">0.00</span></span>
+              </div>
+        </div>
+        </div>
+        <div class="deposit_money">
+          <div class="money_input">
+            <div class="deposit">Your Portfolio</div>
+
+      <div class="one">
+        <div class="symbol">Symbol</div>
+        <div class="Quantity">Quantity</div>
+        <div class="Current Balance">Avg Price</div>
+      </div>
+      <div class="portfolioContainer"  id="portfolioContainer" style="height: 300px; overflow-y:auto">
+      
+      </div>
+        </div>
+       </div>
+    </div>
+</div>
+<script  src="/stock_dashboard/js/script1.js" type="module"></script>
+</body>
+</html>
